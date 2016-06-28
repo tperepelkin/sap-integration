@@ -1,0 +1,235 @@
+#work-generator-dialog #screen1-multiselect {
+    overflow-x: auto;
+    width: 100%;
+    height: 100%
+}
+
+.screen1-list > .field-group > .description {
+    float: left;
+    font-weight: bold;
+}
+
+.screen1.filter-list-checkbox, #dialog-prev-button {
+    float: left;
+}
+
+.screen1.filter-list-checkbox, #dialog-next-button {
+    float: right;
+}
+
+.screen1.filter-list-checkbox, #dialog-generate-button {
+    float: right;
+}
+
+.screen2-dragging-works tfoot tr {
+    border-bottom-style: none;
+}
+.screen2-dragging-works tfoot tr:nth-of-type(1) {
+    border-top-style: none;
+}
+
+#work-generator-dialog .multi-select {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.custom-apps-restfultable-hidden
+{
+  visibility: hidden;
+  diplay: none;
+  nax-width: 0;
+}
+
+.screen2-dragging-works {
+    padding: 5px;
+    border: brown 1px solid;
+}
+
+.screen2-dragging-works tr.disabled > td {
+    text-align: center;
+}
+
+ul.dynatree-container > li:nth-child(2) > ul > li > ul > li {
+    position: relative
+}
+ul.dynatree-container > li:first-child {
+    position: relative;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td {
+    position: absolute;
+    text-align: right;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(2) {
+    color: green;
+    left: 14em;
+    width: 5em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(3) {
+    color: green;
+    left: 20em;
+    width: 7em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(4) {
+     color: indianred;
+     left: 29em;
+     width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(5) {
+    color: red;
+    left: 37em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(6) {
+    color: green;
+    left: 44em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(7) {
+    color: green;
+    left: 51em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:first-child > span > a > span.td:nth-child(8) {
+    color: green;
+    left: 59em;
+    width: 5em;
+}
+
+ul.dynatree-container > li:nth-child(2) > ul > li > ul > li {
+    position: relative
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td {
+    position: absolute;
+    text-align: right;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(2) {
+    color: green;
+    left: 7em;
+    width: 10em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(3) {
+    color: green;
+    left: 22em;
+    width: 2em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(4) {
+    color: indianred;
+    left: 26em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(5) {
+    color: red;
+    left: 34em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(6) {
+    color: green;
+    left: 42em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(7) {
+    color: green;
+    left: 49em;
+    width: 6em;
+}
+#dealTree:not(.screen6) ul.dynatree-container > li:nth-child(2) > ul > li > ul > li > span > a > span.td:nth-child(8) {
+    color: green;
+    left: 55em;
+    width: 6em;
+}
+ul.dynatree-container span.td {
+    /*position: relative;*/
+    display: inline;
+    border-size: 1px;
+    overflow: hidden;
+}
+
+.dynatree-container .header .dynatree-connector {
+    display: none;
+}
+.dynatree-container .header .dynatree-icon {
+    display: none;
+}
+
+#workTree {
+    margin-bottom: 1em;
+}
+
+#headerTableName {
+    margin-bottom: 0.5em;
+}
+
+#headerTable {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    overflow-y: auto;
+    display: inherit;
+}
+
+#headerTable > thead > tr > th, #headerTable > tbody > tr > td {
+    padding: 0px 10px;
+}
+
+#headerTable > thead > tr > th:first-child, #headerTable > tbody > tr > td:first-child {
+    width: 10%;
+}
+
+#work-tree-container, #deal-tree-container {
+    width: 99%;
+    float: left;
+}
+
+#header-table-container {
+    float: left;
+    position: relative;
+    width: 49%;
+}
+#input-container {
+    float: right;
+    position: relative;
+    width: 49%;
+}
+#input-container input, #input-container select {
+    float: right;
+    width: 25em;
+}
+#input-container label {
+    float: left;
+    padding-right: 1em;
+}
+
+#actual-cost-summary > #actualValue {
+    width: 6em;
+}
+
+select#user-name, select#user-name+label {
+    display: none;
+}
+
+#workPercent-form > .field-group {
+    padding-left: 0px;
+}
+
+#workPercentLabel, #workPercent-error {
+    margin-left: 0px;
+}
+
+#workPercentLabel {
+    width: initial;
+    float: left
+}
+
+#workPercent, #workPercent-error, #dialog-close-button {
+    float: right;
+    clear: none;
+}
+
+#workPercent-error {
+    position: relative;
+    width: initial;
+    padding-top: 0px;
+    padding-left: 2em;
+}

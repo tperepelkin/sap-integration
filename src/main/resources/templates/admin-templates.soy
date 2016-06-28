@@ -1,0 +1,72 @@
+{namespace JIRA.WorkGenerator.Admin.Templates}
+
+/**
+ * A template to display Work's table in admin panel
+  * @param row
+  */
+{template .TableWorksRow}
+    <tr workID="{$row.ID}">
+        <td></td>
+        <td>{$row.gipOfProject}</td>
+        <td>{$row.program}</td>
+        <td>{$row.project}</td>
+        <td>{$row.stage}</td>
+        <td>{$row.subject}</td>
+        <td>{$row.codeISR}</td>
+        <td>{$row.system}</td>
+        <td>{$row.kindOfPir}</td>
+        <td>{$row.mark}</td>
+        <td>{$row.volume}</td>
+        <td>{$row.revision}</td>
+        <td>{$row.budgetCost}</td>
+        <td>{$row.lockedBy}</td>
+        <td>
+//        <button class="aui-button aui-button-compact delete" aria-disabled="false"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span>
+        </td>
+        <td><!--tdrobber--></td>
+    </tr>
+{/template}
+
+/**
+ *
+ */
+{template .TableWorksHeader}
+    <thead>
+        <tr>
+            <th><!--icon--></th>
+            <th>gipOfProject</th>
+            <th>program</th>
+            <th>project</th>
+            <th>stage</th>
+            <th>codeISR</th>
+            <th>system</th>
+            <th>subject</th>
+            <th>kindOfPir</th>
+            <th>mark</th>
+            <th>volume</th>
+            <th>revision</th>
+            <th>budgetedCost</th>
+            <th>lockedBy</th>
+            <th><!--buttons--></th>
+            <th><!--throbber--></th>
+        </tr>
+    </thead>
+{/template}
+
+/**
+ * A template to display Work's table in admin panel
+  */
+{template .ViewTableWorks}
+    <table class="aui" id="project-config-works-table">
+        {call .TableWorksHeader}
+        {/call}
+        <tbody>
+//            {if $worksheet.testObject != ''}
+//                {'worksheet.testObject is not null'}
+//                {$worksheet.testObject}
+//            {else}
+//                {'worksheet.testObject is null'}
+//            {/if}
+        </tbody>
+    </table>
+{/template}

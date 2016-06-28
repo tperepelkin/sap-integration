@@ -1,0 +1,17 @@
+#macro( changeEmptyValue $str )
+        #if( ! $str || $str.length() == 0 )_EMPTY_#{else}$str#end
+        #end
+
+<html>
+<head>
+    <title>Edit template of phases</title>
+    <meta name="decorator" content="atl.admin" />
+    $webResourceManager.requireResource("org.sap.integration:deal-generator-admin-phase-template")
+    <meta name="application-base-url" content="$applicationProperties.getBaseUrl()">
+</head>
+
+<body>
+    <div>$i18n.getText("deal.generator.admin.template.page")</div>
+    <table id="phases-template"></table>
+</body>
+</html>

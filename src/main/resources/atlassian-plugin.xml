@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+
+  <resource type="i18n" name="i18n" location="deal-generator"/>
+
+  <web-resource key="deal-generator-resources" name="Deal Generator Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:aui-flag</dependency>
+    <dependency>com.atlassian.auiplugin:jquery-ui-other</dependency>
+
+    <resource type="download" name="deal-generator.css" location="/css/deal-generator.css"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>deal-generator</context>
+  </web-resource>
+
+  <web-resource key="work-generator-ajax-resource" name="Work generator ajax util Web Resources">
+    <resource type="download" name="ajax-requests.js" location="/js/ajax-requests.js"/>
+    <context>atl.general</context>
+  </web-resource>
+
+  <web-resource key="work-generator-dialog-resource" name="Work generator main Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:jquery</dependency>
+    <dependency>com.atlassian.auiplugin:jquery-ui-other</dependency>
+    <dependency>com.atlassian.auiplugin:aui-date-picker</dependency>
+    <dependency>com.atlassian.auiplugin:dialog2</dependency>
+    <dependency>com.atlassian.auiplugin:aui-flag</dependency>
+    <dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
+    <dependency>com.atlassian.auiplugin:aui-inline-dialog2</dependency>
+    <dependency>com.atlassian.auiplugin:aui-experimental-iconfont</dependency>
+    <dependency>com.atlassian.auiplugin:aui-form-notification</dependency>
+    <dependency>org.sap.integration:work-generator-ajax-resource</dependency>
+
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <transformation extension="soy">
+      <transformer key="soyTransformer" />
+    </transformation>
+    <transformation extension="less">
+      <transformer key="lessTransformer"/>
+    </transformation>
+
+    <resource type="download" name="loading.gif" location="/dynatree/skin/loading.gif"/>
+    <resource type="download" name="vline.gif" location="/dynatree/skin/vline.gif"/>
+    <resource type="download" name="vline-rtl.gif" location="/dynatree/skin/vline-rtl.gif"/>
+    <resource type="download" name="icons.gif" location="/dynatree/skin/icons.gif"/>
+    <resource type="download" name="unchecked.gif" location="/images/unchecked.gif"/>
+    <resource type="download" name="checked.gif" location="/images/checked.gif"/>
+
+    <resource type="download" name="ui-easytree.css" location="/dynatree/skin/ui.dynatree.css"/>
+    <resource type="download" name="deal-generator.css" location="/css/dialog-generator.css"/>
+    <resource type="download" name="jquery-validation.css" location="/css/jquery-validation.css"/>
+
+    <resource type="download" name="String.js" location="/util/String.js"/>
+    <resource type="download" name="ui.validate.js" location="/js/jquery.validate.js"/>
+    <resource type="download" name="additional-methods.js" location="/js/additional-methods.js"/>
+    <resource type="download" name="jquery-easytree.js" location="/dynatree/jquery.dynatree.js"/>
+    <resource type="download" name="dialog-generator.js" location="/js/dialog-generator.js"/>
+    <resource type="download" name="template-soy.js" location="/templates/templates.soy"/>
+    <context>atl.general</context>
+  </web-resource>
+
+  <component key="myPluginComponent" class="org.test.DealGeneratorComponentImpl" public="true">
+    <interface>org.test.DealGeneratorComponent</interface>
+  </component>
+
+
+  <web-resource name="Admin Web Web Resources" key="deal-generator-admin-work">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:jquery</dependency>
+    <dependency>com.atlassian.auiplugin:aui-flag</dependency>
+    <dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
+    <dependency>org.sap.integration:work-generator-ajax-resource</dependency>
+
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <transformation extension="soy">
+      <transformer key="soyTransformer" />
+    </transformation>
+    <resource type="download" name="String.js" location="/util/String.js"/>
+    <resource type="download" name="template-admin-soy.js" location="/templates/admin-templates.soy"/>
+    <resource type="download" name="admin-work.js" location="/js/admin-work.js"/>
+    <context>deal-generator.admin.work</context>
+  </web-resource>
+
+  <web-resource name="Admin Phase Template Web Resources" key="deal-generator-admin-phase-template">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:jquery</dependency>
+    <dependency>com.atlassian.auiplugin:aui-flag</dependency>
+    <dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
+
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <resource type="download" name="String.js" location="/util/String.js"/>
+    <resource type="download" name="admin-phase-template.js" location="/js/admin-phase-template.js"/>
+    <context>deal-generator.admin.phase-template</context>
+  </web-resource>
+
+  <component key="myPluginComponent" class="org.sap.SapIntegrationComponentImpl" public="true">
+    <interface>org.sap.SapIntegrationComponent</interface>
+  </component>
+  <component key="tx-processor" name="Transactional Annotation Processor"
+             class="com.atlassian.activeobjects.external.TransactionalAnnotationProcessor">
+    <decription>Processes @Transactional annotations.</decription>
+  </component>
+  <component key="work-service" name="Work Service" class="org.sap.service.DBServiceImpl"/>
+
+  <component-import key="i18nResolver" interface="com.atlassian.sal.api.message.I18nResolver"/>
+  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  <component-import key="plugin-retrieval-service" interface="com.atlassian.plugin.osgi.bridge.external.PluginRetrievalService"/>
+  <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
+  <component-import key="ao" name="Active Objects service" interface="com.atlassian.activeobjects.external.ActiveObjects">
+    <description>Component to access Active Objects functionality from the plugin</description>
+  </component-import>
+  <component-import key="velocityRenderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer" />
+  <component-import key="soyTemplateRenderer" interface="com.atlassian.soy.renderer.SoyTemplateRenderer"/>
+
+  <ao key="ao-module">
+    <entity>org.sap.model.ao.Work</entity>
+    <entity>org.sap.model.ao.Abbreviation</entity>
+    <entity>org.sap.model.ao.PhaseTemplate</entity>
+  </ao>
+
+
+  <rest key="my-deals-rest-resource" path="/deal" version="1.0" name="Deal Rest Resource">
+    <description>Provides Deals rest services</description>
+  </rest>
+
+  <web-item name="My Web Item" i18n-name-key="my-web-item.name" key="my-web-item" section="system.top.navigation.bar" weight="1000">
+    <description key="my-web-item.description">The My Web Item Plugin</description>
+    <label key="my-web-item.label"/>
+    <link linkId="open-work-generator-dialog">/</link>
+    <styleClass>aui-button aui-button-primary aui-style</styleClass>
+    <!--<condition class="org.sap.ContractCreateCondition"/>-->
+  </web-item>
+
+
+  <web-section key="deal-generator-admin-section" name="Настройки плагина договора" location="admin_plugins_menu" weight="900">
+    <label key="deal.plugin.admin.section"></label>
+    <description>Building plugin section</description>
+    <tooltip>Building plugin admin</tooltip>
+  </web-section>
+  <web-item key="deal-generator-import" section="admin_plugins_menu/deal-generator-admin-section" weight="10">
+    <label key="deal.generator.import.label"></label>
+    <link linkId="table-works-admin-link">/plugins/servlet/viewTable</link>
+  </web-item>
+  <web-item key="deal-generator-stage-pattern" section="admin_plugins_menu/deal-generator-admin-section" weight="10">
+    <label key="deal.generator.stage.pattern.label"></label>
+    <link linkId="table-phases-admin-link">/plugins/servlet/editTemplateTable</link>
+  </web-item>
+  <web-item key="deal-generator-settings" section="admin_plugins_menu/deal-generator-admin-section" weight="10">
+    <label key="deal.generator.settings.label"></label>
+    <link linkId="settings-admin-link">/plugins/servlet/editSettings</link>
+  </web-item>
+
+
+
+  <servlet key="view-table-admin-servlet" class="org.sap.servlet.StatusServlet">
+    <url-pattern>/viewTable</url-pattern>
+  </servlet>
+  <servlet key="edit-settings-admin-servlet" class="org.sap.servlet.SettingsServlet">
+    <url-pattern>/editSettings</url-pattern>
+  </servlet>
+</atlassian-plugin>

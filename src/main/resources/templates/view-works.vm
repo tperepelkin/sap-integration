@@ -1,0 +1,31 @@
+#macro( changeEmptyValue $str )
+        #if( ! $str || $str.length() == 0 )_EMPTY_#{else}$str#end
+        #end
+
+<html>
+<head>
+    <title>Edit works</title>
+    <meta name="decorator" content="atl.admin" />
+    $webResourceManager.requireResource("org.sap.integration:deal-generator-admin-work")
+    <meta name="application-base-url" content="$applicationProperties.getBaseUrl()">
+</head>
+
+<body>
+<div style="margin: 10px 0 20px;padding: 20px;border-width: 1px;border-color: #ccc;border-style: solid;">
+    <form method="post" id="admin" action="viewTable" class="aui" enctype="multipart/form-data">
+        <div class="field-group">
+            <label for="uploadFile">$i18n.getText("deal.generator.admin.UploadFile")</label>
+            <input class="upfile" type="file" id="uploadFile" name="uploadFile" title="upload file">
+        </div>
+
+        <div class="field-group"><input class="button" type="submit" value="Create"></div>
+    </form>
+</div>
+
+<hr />
+
+<table id="project-config-works-table"></table>
+<br />
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+{namespace JIRA.WorkGenerator.Templates}
+
+/**
+ * A template to display filtering list of Programs/Projects/Stages on a first screen of Deal Generator
+  *  @param title of the list
+  * @param class marker of the list
+  *  @param options for the list
+  */
+{template .Screen1FilterList}
+    <div class="aui-item screen1-list {$class}">
+        <div class="field-group">
+            <div class="description">{$title}</div>
+
+            <div class="checkbox screen1 filter-list-checkbox {$class}">
+                <label>{getText('screen1.filter')}</label>
+                <input class="checkbox" data-id="{$class}" type="checkbox"/>
+            </div>
+            <select class="multi-select" multiple="multiple" id="screen1-multiselect-{$class}" name="screen1-multiselect-{$class}" size="20">
+            {foreach $item in $options}
+                <option value="{$item}">{$item}</option>
+            {/foreach}
+            </select>
+        </div>
+    </div>
+{/template}
+
+/**
+ * A template to display header of the first screen of Deal Generator
+ * @param number name of the list
+ * @param? byTemplate is we need create phases from templates or manually
+  */
+{template .ScreenHeaderName}
+    {if $number == 1}
+        <h2 class="aui-dialog2-header-main">{getText('screen1.header')}</h2>
+    {elseif $number == 2}
+        <h2 class="aui-dialog2-header-main">{getText('screen2.header')}</h2>
+    {elseif $number == 3}
+        <h2 class="aui-dialog2-header-main">{getText('screen3.header')}</h2>
+    {elseif $number == 4}
+        <h2 class="aui-dialog2-header-main">{getText('screen4.header')}</h2>
+    {elseif $number == 5}
+        {if not $byTemplate}
+            <h2 class="aui-dialog2-header-main">{getText('screen5.header.manual')}</h2>
+        {else}
+            {if $byTemplate == true}
+                <h2 class="aui-dialog2-header-main">{getText('screen5.header')}</h2>
+            {else}
+                <h2 class="aui-dialog2-header-main">{getText('screen5.header.manual')}</h2>
+            {/if}
+        {/if}
+    {elseif $number == 6}
+        <h2 class="aui-dialog2-header-main">{getText('screen6.header')}</h2>
+    {elseif $number == 7}
+        <h2 class="aui-dialog2-header-main">{getText('screen6.header')}</h2>
+    {/if}
+    <a class="aui-dialog2-header-close">
+        <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+    </a>
+{/template}
+
+/**
+ * A template to display header of the first screen of Deal Generator
+ * @param number name of the list
+ */
+{template .ScreenHeader}
+    <header class="aui-dialog2-header dialog-header">
+        {call .ScreenHeaderName}
+            {param number: $number /}
+        {/call}
+    </header>
+{/template}
+
+/**
+ * A template content for the screen1
+ * @param opt1
+ * @param opt2
+ * @param opt3
+ */
+{template .Screen1Content}
+    <div class="aui-group">
+        {call .Screen1FilterList}
+            {param title}
+                {getText('deal.generator.dialog.screen1.programs')}
+            {/param}
+            {param class: 'programs' /}
+            {param options: $opt1 /}
+        {/call}
+
+        {call .Screen1FilterList}
+            {param title: getText('deal.generator.dialog.screen1.projects') /}
+            {param class: 'projects' /}
+            {param options: $opt2 /}
+        {/call}
+
+        {call .Screen1FilterList}
+            {param title: getText('deal.generator.dialog.screen1.stages') /}
+            {param class: 'stages' /}
+            {param options: $opt3 /}
+        {/call}
+    </div>
+{/template}
+
+/**
+ * A template content for the screen4
+ *
+  */
+{template .Screen4Content}
+    <div class="aui-group" style="height: 5em;" />
+    <div class="aui-group">
+        <div class="aui-item" />
+        <div class="aui-item">
+            <fieldset class="group">
+                <legend><span>{getText('deal.generator.dialog.screen4.caseTemplateCreation')}</span></legend>
+                <div class="radio">
+                    <input class="radio" type="radio" name="rads" id="createPhaseManual">
+                    <label for="irOne">{getText('deal.generator.dialog.screen4.caseTemplateCreation.manual')}</label>
+                </div>
+                <div class="radio">
+                    <input class="radio" type="radio" checked="checked" name="rads" id="createPhaseFromTemplate">
+                    <label for="irTwo">{getText('deal.generator.dialog.screen4.caseTemplateCreation.byTemplate')}</label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="aui-item" />
+    </div>
+{/template}
+
+/**
+ * A template to display table header of the screen5
+ *
+  */
+{template .Screen5TableHeader}
+<thead>
+    <tr>
+        <th id="stage-number" style="width: 5%;">{getText('deal.generator.dialog.screen5.StageNumber')}</th>
+        <th id="stage-name" >{getText('deal.generator.dialog.screen5.StageName')}</th>
+        <th id="progress" style="width: 10%;">{getText('deal.generator.dialog.screen5.Progress')}</th>
+        <th id="start-date" style="width: 15%;">{getText('deal.generator.dialog.screen5.StartDate')}</th>
+        <th id="finish-date" style="width: 15%;">{getText('deal.generator.dialog.screen5.FinishDate')}</th>
+        <th id="remove-button" style="width: 5%;">{getText('deal.generator.dialog.screen5.Operation')}</th>
+    </tr>
+</thead>
+{/template}
+
+/**
+ * A template to display table header of the screen4
+ * @param stageNumber
+ * @param stageName
+ * @param progress
+ * @param startDate
+ * @param finishDate
+  */
+{template .Screen5TableRow}
+{let $tmp1: $startDate /}
+{let $tmp2: $finishDate /}
+<tr>
+    <td headers="stage-number">{$stageNumber}</td>
+    <td headers="stage-name">{$stageName}</td>
+    <td headers="progress">{$progress}</td>
+    <td headers="start-date">
+        <input class="aui-date-picker" type="date" />
+    </td>
+    <td headers="finish-date">
+        <input class="aui-date-picker" type="date"  />
+    </td>
+    <td headers="remove-button">
+        <button class="aui-button aui-button-compact" aria-disabled="true"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span>
+        </button>
+    </td>
+</tr>
+{/template}
+
+/**
+ * A template content for the screen5
+  */
+{template .Screen5Content}
+
+<button id="isFromTemplateButton" class="aui-button" aria-disabled="false" style="display:none;"><span class="aui-icon aui-icon-small aui-iconfont-add"></span>{getText('deal.generator.dialog.screen5.AddStage')}</button>
+<div id="phase-message-bar" class="aui-message aui-message-error" style="display: none; visibility: hidden"></div>
+<table class="aui" style="margin-bottom:20px;display:block;overflow-y:auto" id="phases">
+</table>
+{/template}
+
+
+/**
+ * A template for small table on screen6
+ * @param program
+ * @param project
+ * @param stage
+ * @param kindOfPir
+ * @param system
+  */
+{template .Screen6TableHeader}
+<table id="headerTable" class="aui">
+    <thead>
+        <tr>
+            <th style="font-weight:bold;">{getText('deal.generator.admin.Program')}:</th>
+            <th>{$program}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="font-weight:bold">{getText('deal.generator.admin.Project')}</td>
+            <td>{$project}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold">{getText('deal.generator.admin.Stage')}</td>
+            <td>{$stage}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold">{getText('deal.generator.admin.KindOfPir')}</td>
+            <td>{$kindOfPir}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold">{getText('deal.generator.admin.System')}</td>
+            <td>{$system}</td>
+        </tr>
+    </tbody>
+</table>
+{/template}
+
+/**
+ * A template content for the screen6
+  */
+{template .Screen6Content}
+<div id="header-table-container">
+    <div id="headerTableName">{getText('deal.generator.dialog.screen6.headerTable')}</div>
+    <div id="headerTable"></div>
+</div>
+<div id="input-container">
+    <div class="field-group">
+        <label for="deal-name">{getText('deal.generator.dialog.screen6.deal.inputLabel')}<span class="aui-icon icon-required"> required</span></label>
+        <input id="deal-name" name="deal-name" type="text">
+    </div>
+    <div style="clear:both;"></div>
+    <div class="field-group">
+        <label for="deal-name">{getText('deal.generator.component')}<span class="aui-icon icon-required"> required</span></label>
+        <select class="select" id="component" name="component" title="">
+        </select>
+    </div>
+    <div style="clear:both;margin-top: 1em;"></div>
+</div>
+<div style="clear:both" />
+<div id="work-tree-container">
+    <div id="workTreeName">{getText('deal.generator.dialog.screen6.Name')}</div>
+    <div id="workTree">
+        <ul>
+            <li id="header" data="addClass: 'header'">
+            </li>
+            <li class="expanded isFolder" id="workNode">
+                {getText('deal.generator.dialog.screen3.selectedWorks')}
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="deal-tree-container">
+    <div id="dealTreeName">{getText('deal.generator.dialog.screen6.Name')}</div>
+    <div id="dealTree">
+        <ul>
+            <li id="header" data="addClass: 'header'">
+            </li>
+            <li class="expanded isFolder" id="dealNode">
+                {getText('deal.generator.dialog.deal.Name')}
+            </li>
+        </ul>
+    </div>
+</div>
+{/template}
+
+
+
+
+/**
+ * A template to display table header of the screen3
+ *
+  */
+{template .Screen3TableHeader}
+<thead>
+    <tr>
+        <th id="kind-of-pir" style="width: 10%;">{getText('deal.generator.admin.KindOfPir')}</th>
+        <th id="mark" style="width: 5%;">{getText('deal.generator.admin.Mark')}</th>
+        <th id="volume" style="width: 5%;">{getText('deal.generator.admin.Volume')}</th>
+        <th id="revision" style="width: 5%;">{getText('deal.generator.admin.Revision')}</th>
+        <th id="budget-cost" style="width: 10%;">{getText('deal.generator.admin.BudgetedCost')}</th>
+        <th id="actual-cost" style="width: 10%;">{getText('deal.generator.dialog.screen3.ActualCost')}</th>
+    </tr>
+</thead>
+{/template}
+
+/**
+ * A template to display table footer of the screen3
+ *
+  */
+{template .Screen3TableFooter}
+<tfoot>
+    <tr style="border-bottom-style:none;border-top-style:none;">
+        <td id="kind-of-pir" colspan="6">{getText('deal.generator.dialog.screen3.Summary')}</td>
+        <td id="budget-cost-summary" style="width: 10%;"></td>
+        <td id="actual-cost-summary" style="width: 10%;"><input id="actualValue" type="text"></td>
+    </tr>
+    <tr style="border-bottom-style:none;display:none;">
+        <td id="kind-of-pir" colspan="7"></td>
+        <td style="width: 10%;">
+            <fieldset class="group">
+                <div class="radio">
+                    <input class="radio" type="radio" checked="checked" name="rads" id="idOne" style="margin-left: 0px;"><label for="irOne" style="margin-left: 5px;">{getText('deal.generator.dialog.screen3.FirstAllocation')}</label>
+                </div>
+                <div class="radio">
+                    <input class="radio" type="radio" name="rads" id="idTwo" style="margin-left: 0px;"><label for="irTwo" style="margin-left: 5px;">Second allocation</label>
+                </div>
+            </fieldset>
+        </td>
+    </tr>
+  </tfoot>
+{/template}
+
+/**
+ * A template to display table header of the screen3
+ * @param kindOfPir
+ * @param mark
+ * @param volume
+ * @param revision
+ * @param budgetCost
+ * @param actualCost
+  */
+{template .Screen3TableRow}
+<tr>
+    <td headers="kind-of-pir">{$kindOfPir}</td>
+    <td headers="mark">{$mark}</td>
+    <td headers="volume">{$volume}</td>
+    <td headers="revision">{$revision}</td>
+    <td headers="budget-cost">{$budgetCost}</td>
+    <td headers="actual-cost"><input class="text" type="text" title="Actual cost" value="{$actualCost}"></td>
+</tr>
+{/template}
+
+/**
+ * A template content for the screen3
+  */
+{template .Screen3Content}
+<div>{getText('deal.generator.dialog.screen3.selectedWorks')}</div>
+<table class="aui screen2-dragging-works" style="margin-bottom: 20px;display:block;overflow-y:auto;height:20em;" id="selected-works">
+</table>
+
+<div>
+ <button id="reset-button" class="aui-button" aria-disabled="false">{getText('deal.generator.reset')}</button>
+</div>
+
+{/template}
+
+
+/**
+ * A template to display table header of the screen2
+ *
+  */
+{template .Screen2TableHeader}
+<thead>
+    <tr class="header-row">
+        <th id="program" style="width: 15%;">{getText('deal.generator.admin.Program')}</th>
+        <th id="project">{getText('deal.generator.admin.Project')}</th>
+        <th id="stage" style="width: 15%;">{getText('deal.generator.admin.Stage')}</th>
+        <th id="codeISR" style="width: 10%;">{getText('deal.generator.admin.codeISR')}</th>
+        <th id="object" style="width: 10%;">{getText('deal.generator.admin.Subject')}</th>
+        <th id="kind-of-pir" style="width: 10%;">{getText('deal.generator.admin.KindOfPir')}</th>
+        <th id="mark" style="width: 5%;">{getText('deal.generator.admin.Mark')}</th>
+        <th id="volume" style="width: 5%;">{getText('deal.generator.admin.Volume')}</th>
+        <th id="revision" style="width: 5%;">{getText('deal.generator.admin.Revision')}</th>
+        <th id="budgeted-cost" style="width: 10%;">{getText('deal.generator.admin.BudgetedCost')}</th>
+    </tr>
+</thead>
+{/template}
+
+/**
+ * A template to display table header of the screen2
+ * @param rowId
+ * @param program content for the row
+ * @param project content for the row
+ * @param stage
+ * @param codeISR
+ * @param subject
+ * @param kindOfPir
+ * @param mark
+ * @param volume
+ * @param revision
+ * @param budgetedCost
+  */
+{template .Screen2TableRow}
+<tr rowId="{$rowId}">
+    <td headers="program">{$program}</td>
+    <td headers="project">{$project}</td>
+    <td headers="stage">{$stage}</td>
+    <td headers="codeISR">{$codeISR}</td>
+    <td headers="subject">{$subject}</td>
+    <td headers="kind-of-pir">{$kindOfPir}</td>
+    <td headers="mark">{$mark}</td>
+    <td headers="volume">{$volume}</td>
+    <td headers="revision">{$revision}</td>
+    <td headers="budgeted-cost">{$budgetedCost}</td>
+</tr>
+{/template}
+
+/**
+ * A template content for the screen2
+  */
+{template .Screen2Content}
+<div>{getText('deal.generator.dialog.screen3.selectedWorks')}</div>
+<table class="aui screen2-dragging-works" style="margin-bottom: 20px;display:block;overflow-y:auto;height:20em;" id="selected-works">
+    {call .Screen2TableHeader}
+    {/call}
+    <tbody class="t_sortable">
+    </tbody>
+</table>
+
+<div>{getText('deal.generator.dialog.screen3.allStatuses')}</div>
+<table class="aui screen2-dragging-works" style="margin-top: 20px;display:block;overflow-y:auto;height:20em;" id="all-works">
+    {call .Screen2TableHeader}
+    {/call}
+    <tbody class="t_sortable">
+    </tbody>
+</table>
+{/template}
+
+
+/**
+ * A template content for the screen3
+ * @param number of screen
+ * @param op1
+ * @param op2
+ * @param op3
+ */
+{template .ScreenContent}
+    {if $number == 1}
+        {call .Screen1Content}
+            {param opt1: $op1 /}
+            {param opt2: $op2 /}
+            {param opt3: $op3 /}
+        {/call}
+    {elseif $number == 2}
+        {call .Screen2Content}
+        {/call}
+    {elseif $number == 3}
+        {call .Screen3Content}
+        {/call}
+    {elseif $number == 4}
+        {call .Screen4Content}
+        {/call}
+    {elseif $number == 5}
+        {call .Screen5Content}
+        {/call}
+    {else}
+        {call .Screen6Content}
+        {/call}
+    {/if}
+{/template}
+
+
+/**
+ *
+ */
+{template .WorkGeneratorDialog}
+    <section role="dialog" id="work-generator-dialog" class="aui-layer aui-dialog2 aui-dialog2-xlarge" aria-hidden="true" data-aui-focus="false" data-aui-blanketed="true">
+        {call .ScreenHeader}
+            {param number: 1 /}
+        {/call}
+        <div class="aui-dialog2-content" style="overflow: hidden" screen-number="1">
+        </div>
+        <footer class="aui-dialog2-footer screen1-footer">
+            <div class="aui-dialog2-footer-hint">
+                <button id="dialog-prev-button" class="aui-button" aria-disabled="true">{getText('deal.generator.button.Prev')}</button>
+                <button id="dialog-generate-button" class="aui-button">{getText('deal.generator.button.Generate')}</button>
+                <button id="dialog-next-button" class="aui-button" aria-disabled="true">{getText('deal.generator.button.Next')}</button>
+            </div>
+        </footer>
+    </section>
+{/template}
+
+
+/**
+ *
+ */
+{template .WorkPercentDialog}
+<section role="dialog" id="work-dialog" class="aui-layer aui-dialog2 aui-dialog2-small" aria-hidden="true" data-aui-focus="false" data-aui-blanketed="true">
+	<header class="aui-dialog2-header dialog-header">
+		<h2 class="aui-dialog2-header-main">{getText('deal.generator.dialog.screen6.work.in.stage')}</h2>
+	</header>
+	<div class="aui-dialog2-content" style="overflow: hidden">
+		<form class="aui actorform" action="#" name="workPercent-form" id="workPercent-form">
+            <div class="field-group">
+                <label for="workPercent" id="workPercentLabel">{getText('deal.generator.dialog.screen6.work.percent')}<span class="aui-icon icon-required"> required</span></label>
+                <input class="text" type="text" id="workPercent" name="workPercent" title="{getText('deal.generator.dialog.screen6.work.percent.title')}" value="" required>
+            </div>
+		</form>
+	</div>
+	<footer class="aui-dialog2-footer screen1-footer">
+		<div class="aui-dialog2-footer-hint">
+			<button id="dialog-close-button" class="aui-button" aria-disabled="false">{getText('deal.generator.button.Close')}</button>
+		</div>
+	</footer>
+</section>
+{/template}

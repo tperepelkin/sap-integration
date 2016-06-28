@@ -1,0 +1,53 @@
+#macro( changeEmptyValue $str )
+        #if( ! $str || $str.length() == 0 )_EMPTY_#{else}$str#end
+        #end
+
+<html>
+<head>
+    <title>Edit plugin settings</title>
+    <meta name="decorator" content="atl.admin" />
+    $webResourceManager.requireResource("org.sap.integration:deal-generator-admin-work")
+    <meta name="application-base-url" content="$applicationProperties.getBaseUrl()">
+</head>
+
+<body>
+<div style="margin: 10px 0 20px;padding: 20px;border-width: 1px;border-color: #ccc;border-style: solid;">
+    <form method="post" id="admin" action="editSettings" class="aui">
+        <div class="field-group">
+            <label for="text-input">Default field<span class="aui-icon icon-required">required</span></label>
+            <select class="select" id="charsetName" name="charsetName">
+                <option>US-ASCII</option>
+                <option selected="selected">ISO-8859-1</option>
+                <option>UTF-8</option>
+                <option>UTF-16BE</option>
+                <option>UTF-16LE</option>
+                <option>UTF-16</option>
+            </select>
+            <div class="description">Default width input of a required field</div>
+        </div>
+        <div class="field-group">
+            <label for="text-input">Default field<span class="aui-icon icon-required">required</span></label>
+            <input class="text" type="text" id="text-input" name="text-input" title="Text input">
+            <div class="description">Default
+                width input of a required field</div>
+        </div>
+
+        <h3>$i18n.getText("deal.generator.admin.edit.settings")</h3>
+        <div class="field-group">
+            <label for="charsetName">$i18n.getText("deal.generator.admin.edit.settings.charset")</label>
+            <select class="select" id="charsetName" name="charsetName">
+                <option>US-ASCII</option>
+                <option selected="selected">ISO-8859-1</option>
+                <option>UTF-8</option>
+                <option>UTF-16BE</option>
+                <option>UTF-16LE</option>
+                <option>UTF-16</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+<hr />
+
+</body>
+</html>
